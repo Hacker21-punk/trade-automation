@@ -26,5 +26,5 @@ jobs:
       - name: Execute Bot
         env:
           ALPACA_API_KEY: ${{ secrets.ALPACA_API_KEY }}
-          SECRET_KEY: ${{ secrets.ALPACA_SECRET_KEY }} # Note: The code maps this to ALPACA_SECRET_KEY
+          ALPACA_SECRET_KEY: ${{ secrets.ALPACA_SECRET_KEY }}
         run: python bot.py
