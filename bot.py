@@ -1,7 +1,7 @@
 import os
 import alpaca_trade_api as tradeapi
 
-# 1. Pull API Keys securely from GitHub Secrets (Never hardcode real keys)
+# 1. Pull API Keys securely from GitHub Secrets
 API_KEY = os.environ.get("ALPACA_API_KEY")
 SECRET_KEY = os.environ.get("ALPACA_SECRET_KEY")
 BASE_URL = "https://alpaca.markets"
