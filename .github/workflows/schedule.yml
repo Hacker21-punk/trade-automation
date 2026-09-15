@@ -6,6 +6,10 @@ on:
     - cron: '30 20 * * 1-5'
   workflow_dispatch: # Allows you to manually click "Run" anytime to test it
 
+# Force all GitHub Actions backend structures to clean Node24 execution environment
+env:
+  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: 'true'
+
 jobs:
   trade:
     runs-on: ubuntu-latest
