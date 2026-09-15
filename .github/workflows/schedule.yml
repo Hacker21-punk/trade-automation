@@ -2,7 +2,7 @@ name: Run Daily Trading Bot
 
 on:
   schedule:
-    # Runs at 20:30 UTC (4:00 PM EST / 3:30 PM EDT) every Monday through Friday
+    # Runs at 20:30 UTC (4:00 PM EST) every Monday through Friday
     - cron: '30 20 * * 1-5'
   workflow_dispatch: # Allows you to manually click "Run" anytime to test it
 
@@ -16,7 +16,7 @@ jobs:
       - name: Setup Python
         uses: actions/setup-python@v5
         with:
-          python-node-version: '3.10'
+          python-version: '3.10'
 
       - name: Install Dependencies
         run: |
