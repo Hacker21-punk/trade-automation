@@ -63,7 +63,7 @@ trend_ok = (c_dip["close"] > c_dip["ema50"]) and (c_dip["ema9"] > c_dip["ema50"]
 wpr_ok   = c_dip["wpr"] <= -60.0
 is_dip   = (c_dip["low"] < c_dip["ema9"]) and (c_prev["close"] > c_prev["ema9"])
 
-if True:
+if trend_ok and wpr_ok and is_dip:
     trigger_high = float(c_dip["high"])
     stop_loss    = float(c_dip["low"])
     risk         = trigger_high - stop_loss
