@@ -4,7 +4,7 @@ import alpaca_trade_api as tradeapi
 # 1. Pull API Keys securely from GitHub Secrets
 API_KEY = os.environ.get("ALPACA_API_KEY")
 SECRET_KEY = os.environ.get("ALPACA_SECRET_KEY")
-BASE_URL = "https://alpaca.markets"
+BASE_URL = "https://paper-api.alpaca.markets" # Verified for standard paper test trading endpoints
 
 if not API_KEY or not SECRET_KEY:
     print("❌ Error: API keys are missing from environment variables.")
@@ -18,8 +18,12 @@ def run_trading_bot():
     
     # 2. Fetch market data to compute the 200-day Simple Moving Average
     barset = api.get_bars(symbol, '1Day', limit=250).df
-    current_price = float(barset['close'].iloc[-1])
-    sma_200 = float(barset['close'].rolling(window=200).mean().iloc[-1])
+    
+    # SAFE FIX: Dynamic check to avoid crashes regardless of key case variations
+    close_col = 'close' if 'close' in barset.columns else 'Close'
+    
+    current_price = float(barset[close_col].iloc[-1])
+    sma_200 = float(barset[close_col].rolling(window=200).mean().iloc[-1])
     
     # 3. Check if we already own the asset
     try:
